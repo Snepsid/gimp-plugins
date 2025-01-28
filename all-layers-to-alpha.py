@@ -19,7 +19,7 @@ register(
     "Add alpha channel to all layers",
     "Add alpha channel to all layers in the image",
     "Snepsid",
-    "Snepsid",
+    "CC0 1.0 Universal",
     "2023",
     "<Image>/Layer/All Layers to Alpha",
     "RGB*, GRAY*",

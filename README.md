@@ -16,6 +16,14 @@ Adds an alpha channel to all layers in the image that don't already have one. Th
 
 Exports each layer of the current image as individual PNG files in your chosen directory.
 
+### Progressive Crop
+
+Processes a folder of images, creating progressively smaller cropped versions. Each subsequent image is cropped by a specified percentage, keeping the crop centered. Useful for creating animation frames that zoom in or out.
+
+### Batch Upscale Sequence
+
+Processes a sequence of images, progressively increasing their size. Each subsequent image is scaled up by a compounding percentage, creating a smooth zoom effect when the sequence of output images is used in a video or animation.
+
 ## Installation
 
 1. Find your GIMP plugins directory:
@@ -55,6 +63,28 @@ Note: The plugin processes all layers, including hidden ones, but preserves thei
 2. Go to File > Export > Export Layers as PNG...
 3. Select a destination directory
 4. The plugin will save each layer as a PNG file in the selected directory
+
+### Progressive Crop
+1. Go to File > Progressive Crop...
+2. Set the following options:
+   - Input folder: Directory containing your source images
+   - Output folder: Where to save the processed images
+   - Start percentage (0-100): Initial crop size as percentage of original
+   - Step percentage (0-100): How much to reduce each subsequent image
+3. The plugin will process all supported image files (.png, .jpg, .jpeg, .gif, .bmp, .tiff, .tif)
+
+### Batch Upscale Sequence
+1. Go to File > Batch Upscale Sequence...
+2. Set the following options:
+   - Input directory: Folder containing your image sequence
+   - Output directory: Where to save the upscaled images
+   - Scale step percentage: The percentage to increase each subsequent image (compounds)
+   - Interpolation mode: Choose the scaling algorithm:
+     - None: Nearest neighbor (pixelated)
+     - Linear: Basic smoothing
+     - Cubic: Better quality
+     - Sinc (Lanczos3): Highest quality
+3. The plugin processes images in alphabetical order
 
 ## Contributing
 
