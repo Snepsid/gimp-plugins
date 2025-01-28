@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+# Add Alpha to All Layers Plugin for GIMP
+# Author: Snepsid
+# Version: 1.0.0
+# Description: Adds alpha channel to all layers that don't have one
+# License: CC0 1.0 Universal
+
 from gimpfu import *
 
 def add_alpha_to_all_layers(image, drawable):
@@ -15,7 +21,7 @@ register(
     "Snepsid",
     "Snepsid",
     "2023",
-    "<Image>/Layer/Add Alpha to All Layers",
+    "<Image>/Layer/All Layers to Alpha",
     "RGB*, GRAY*",
     [],
     [],

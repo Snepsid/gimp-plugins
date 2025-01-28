@@ -8,6 +8,14 @@ A collection of Python plugins for GIMP to enhance your image editing workflow.
 
 Creates a sprite sheet from all layers in your image, with options for automatic or manual row/column configuration. Works with both regular layers and layer groups, preserving layer visibility states.
 
+### All Layers to Alpha
+
+Adds an alpha channel to all layers in the image that don't already have one. This is useful for ensuring all layers can handle transparency before performing operations that require an alpha channel.
+
+### Export Layers as PNGs
+
+Exports each layer of the current image as individual PNG files in your chosen directory.
+
 ## Installation
 
 1. Find your GIMP plugins directory:
@@ -35,7 +43,18 @@ Creates a sprite sheet from all layers in your image, with options for automatic
    - Columns: Number of columns (0 for automatic calculation)
 4. If both rows and columns are set to 0, the plugin will automatically calculate the most square-like arrangement
 
+### All Layers to Alpha
+1. Open your image in GIMP
+2. Go to Layer > Add Alpha to All Layers
+3. Alpha channels will be added to any layers that don't already have them
+
 Note: The plugin processes all layers, including hidden ones, but preserves their visibility states.
+
+### Export Layers as PNGs
+1. Open your multi-layer image in GIMP
+2. Go to File > Export > Export Layers as PNG...
+3. Select a destination directory
+4. The plugin will save each layer as a PNG file in the selected directory
 
 ## Contributing
 
