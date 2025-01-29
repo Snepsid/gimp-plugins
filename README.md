@@ -24,6 +24,10 @@ Processes a folder of images, creating progressively smaller cropped versions. E
 
 Processes a sequence of images, progressively increasing their size. Each subsequent image is scaled up by a compounding percentage, creating a smooth zoom effect when the sequence of output images is used in a video or animation.
 
+### Batch Zoom Effect
+
+Creates a zoom effect sequence by processing a series of images with progressive cropping and scaling. Unlike simple scaling, this plugin maintains image quality by cropping to original dimensions. Includes robust error handling and progress feedback.
+
 ## Installation
 
 1. Find your GIMP plugins directory:
@@ -85,6 +89,20 @@ Note: The plugin processes all layers, including hidden ones, but preserves thei
      - Cubic: Better quality
      - Sinc (Lanczos3): Highest quality
 3. The plugin processes images in alphabetical order
+
+### Batch Zoom Effect
+1. Go to File > Batch Zoom Effect...
+2. Set the following options:
+   - Input Folder: Directory containing your source images
+   - Output Folder: Where to save processed images
+   - Start percentage (0-100): How zoomed in the sequence will end up
+   - Step percentage (0-100): How much to change the zoom between frames
+   - Interpolation mode:
+     - None: Nearest neighbor (pixelated)
+     - Linear: Basic smoothing
+     - Cubic: Better quality
+     - Sinc (Lanczos3): Highest quality
+3. The plugin will process all valid images in sequence and show progress
 
 ## Contributing
 
