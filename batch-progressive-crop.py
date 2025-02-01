@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Progressive Crop Plugin for GIMP
-# Author: Snepsid
+# Batch Progressive Crop Plugin for GIMP
+# Author: Snepsid (https://github.com/snepsid)
 # Version: 1.0.0
 # Description: Creates progressively smaller cropped versions of images
 # License: CC0 1.0 Universal
@@ -10,7 +10,7 @@
 from gimpfu import *
 import os
 
-def progressive_crop(input_folder, output_folder, start_percentage, step_percentage):
+def batch_progressive_crop(input_folder, output_folder, start_percentage, step_percentage):
     # List of supported image extensions
     supported_formats = ('.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff', '.tif')
     files = [f for f in os.listdir(input_folder) if os.path.isfile(os.path.join(input_folder, f))]
@@ -54,13 +54,13 @@ def progressive_crop(input_folder, output_folder, start_percentage, step_percent
     return
 
 register(
-    "progressive_crop",
-    "Progressively crop a series of images",
+    "python_fu_batch_progressive_crop",
+    "Batch Progressive Crop",
     "Crops a series of images from an input folder progressively to smaller dimensions",
     "Snepsid",
     "CC0 1.0 Universal",
     "2023",
-    "Progressive Crop...",
+    "Batch Progressive Crop...",
     "",
     [
         (PF_DIRNAME, "input_folder", "Input folder", ""),
@@ -69,7 +69,7 @@ register(
         (PF_FLOAT, "step_percentage", "Step percentage (0-100)", 5),
     ],
     [],
-    progressive_crop,
-    menu="<Image>/File")
+    batch_progressive_crop,
+    menu="/File")
 
 main()

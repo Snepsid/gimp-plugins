@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # Create Sprite Sheet Plugin for GIMP
-# Author: Snepsid
+# Author: Snepsid (https://github.com/snepsid)
 # Version: 1.0.0
 # Description: Creates a sprite sheet from all layers in an image
 # License: CC0 1.0 Universal

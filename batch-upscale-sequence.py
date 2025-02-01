@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # Batch Upscale Sequence for GIMP
-# Author: Snepsid
+# Author: Snepsid (https://github.com/snepsid)
 # Version: 1.0.0
 # Description: Processes a sequence of images, progressively increasing their size.
 # License: CC0 1.0 Universal
