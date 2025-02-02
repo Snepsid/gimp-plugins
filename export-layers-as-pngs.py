@@ -2,7 +2,6 @@
 
 # Export Layers as PNG Plugin for GIMP
 # Author: Snepsid (https://github.com/snepsid)
-# Version: 1.0.0
 # Description: Exports all layers as individual PNG files
 # License: CC0 1.0 Universal
 

@@ -2,7 +2,6 @@
 
 # Add Alpha to All Layers Plugin for GIMP
 # Author: Snepsid (https://github.com/snepsid)
-# Version: 1.0.0
 # Description: Adds alpha channel to all layers that don't have one
 # License: CC0 1.0 Universal
 

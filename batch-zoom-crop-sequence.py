@@ -3,7 +3,6 @@
 
 # Batch Zoom Crop Sequence Plugin for GIMP
 # Author: Snepsid (https://github.com/snepsid)
-# Version: 2.0.0
 # Description: Creates zoom sequences with multi-format support
 # License: CC0 1.0 Universal
 
@@ -72,78 +71,59 @@ def is_valid_image(filepath):
     except:
         return False
 
-def process_single_image(input_path, output_path, width, height, start_percentage, step_percentage, interpolation_mode, index):
-    """Process a single image with error handling."""
-    try:
-        # Load image based on actual file type
-        filetype = get_file_type(input_path)
-        img = load_image(input_path, filetype)
-        drawable = img.active_layer
-
-        # Convert lossy formats to PNG
-        if filetype in ('jpeg', 'webp'):
-            output_path = os.path.splitext(output_path)[0] + '.png'
-
-        # Calculate crop percentage: start large and get smaller
-        crop_percentage = max(start_percentage, 100 - (index * step_percentage))
-        
-        # Calculate dimensions based on the crop percentage
-        crop_width = int(width * crop_percentage / 100)
-        crop_height = int(height * crop_percentage / 100)
-
-        # Center the crop
-        x_offset = (width - crop_width) // 2
-        y_offset = (height - crop_height) // 2
-
-        # Crop and scale
-        pdb.gimp_image_crop(img, crop_width, crop_height, x_offset, y_offset)
-        pdb.gimp_context_set_interpolation(interpolation_mode)
-        pdb.gimp_image_scale(img, width, height)
-
-        # Save processed image
-        save_image(img, drawable, output_path, os.path.splitext(output_path)[1].lower())
-
-        pdb.gimp_image_delete(img)
-        return True
-    except:
-        return False
-
 def batch_zoom_crop_sequence(input_folder, start_percentage, step_percentage, interpolation_mode):
-    """Main function with improved error handling and file filtering."""
+    """Main function for batch processing images with zoom crop effect."""
     # Create output folder inside input folder
-    output_folder = os.path.join(input_folder, "batch-zoom-effect-output")
+    output_folder = os.path.join(input_folder, "batch-zoom-crop-sequence-output")
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
     
-    # Get list of files and sort them
+    # Get list of valid files and sort them
     all_files = [f for f in os.listdir(input_folder) if os.path.isfile(os.path.join(input_folder, f))]
     all_files.sort()
 
     # Process files sequentially
-    successful = 0
-    valid_count = 0
-
-    for i, f in enumerate(all_files):
+    processed_count = 0
+    for f in all_files:
         input_path = os.path.join(input_folder, f)
         
-        # Skip invalid images early
+        # Skip invalid images
         if not is_valid_image(input_path):
             continue
             
         output_path = os.path.join(output_folder, f)
-        valid_count += 1
 
         try:
-            # Get dimensions
+            # Load and process image
             filetype = get_file_type(input_path)
             img = load_image(input_path, filetype)
-            width, height = img.width, img.height
-            pdb.gimp_image_delete(img)
+            drawable = img.active_layer
 
-            if process_single_image(input_path, output_path, width, height, 
-                                 start_percentage, step_percentage, 
-                                 interpolation_mode, valid_count - 1):
-                successful += 1
+            # Convert lossy formats to PNG
+            if filetype in ('jpeg', 'webp'):
+                output_path = os.path.splitext(output_path)[0] + '.png'
+
+            # Calculate crop percentage: start large and get smaller
+            crop_percentage = max(start_percentage, 100 - (processed_count * step_percentage))
+            
+            # Calculate dimensions based on the crop percentage
+            crop_width = int(img.width * crop_percentage / 100)
+            crop_height = int(img.height * crop_percentage / 100)
+
+            # Center the crop
+            x_offset = (img.width - crop_width) // 2
+            y_offset = (img.height - crop_height) // 2
+
+            # Crop and scale
+            pdb.gimp_image_crop(img, crop_width, crop_height, x_offset, y_offset)
+            pdb.gimp_context_set_interpolation(interpolation_mode)
+            pdb.gimp_image_scale(img, img.width, img.height)
+
+            # Save processed image
+            save_image(img, drawable, output_path, os.path.splitext(output_path)[1].lower())
+
+            pdb.gimp_image_delete(img)
+            processed_count += 1
         except:
             continue
 
