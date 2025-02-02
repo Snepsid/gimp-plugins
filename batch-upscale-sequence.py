@@ -132,7 +132,7 @@ register(
     [
         (PF_DIRNAME, "input_directory", "Input directory", ""),
         (PF_FLOAT, "scale_step_percentage", "Scale step percentage", 1.0),
-        (PF_OPTION, "interpolation_mode", "Interpolation mode", 3, ("None", "Linear", "Cubic", "Sinc (Lanczos3)")),
+        (PF_OPTION, "interpolation_mode", "Interpolation mode", 0, ("None", "Linear", "Cubic", "Sinc (Lanczos3)")),
     ],
     [],
     batch_upscale_sequence,
